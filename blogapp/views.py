@@ -12,7 +12,7 @@ def detail(request, blog_id):
     return render(request, 'detail.html', {'blog': blog_detail})
 
 def new(request):
-    return render(request, 'blog/new.html')
+    return render(request, 'new.html')
 
 def create(request):
     blog = Blog()
