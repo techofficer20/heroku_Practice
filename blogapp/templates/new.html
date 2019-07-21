@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <br>
 <div class="container">
     <div class="container">
@@ -18,4 +19,10 @@
     </div>
     <br />
 </div>
+{% else %}
+<br />
+<h1>You need to Log in or Sign up!</h1>
+<a href = "{% url 'login' %}"><button class = "btn btn-primary">Log in</button></a>
+<a href = "{% url 'signup' %}"><button class = "btn btn-warning">Sign up</button></a>
+{% endif %}
 {% endblock %}
