@@ -3,7 +3,7 @@
 {% block content %}
 <br>
 <div class="container">
-    {% for blog in blogs.all %}
+    {% for blog in posts %}
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -19,4 +19,25 @@
     <br />
     {% endfor %}
 </div>
+<div class = "paginator_bar">
+{%if posts.has_previous%}
+<a href="?page=1"><button class = "btn btn-info">First</button></a>
+<a href="?page={{posts.previous_page_number}}"><button class = "btn btn-light">Previous</button></a>
+{% else %}
+<a href="?page=1"><button class = "btn btn-info">First</button></a>
+<a href="#"><button class = "btn btn-light" disabled>Previous</button></a>
+{%endif%}
+
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{%if posts.has_next%}
+<a href="?page={{posts.next_page_number}}"><button class = "btn btn-light">Next</button></a>
+<a href="?page={{posts.paginator.num_pages}}"><button class = "btn btn-info">Last</button></a>
+</div>
+{% else %}
+<a href="#"><button class = "btn btn-info" disabled>Next</button></a>
+<a href="?page={{posts.paginator.num_pages}}"><button class = "btn btn-light">Last</button></a>
+{%endif%}
 {% endblock %}
