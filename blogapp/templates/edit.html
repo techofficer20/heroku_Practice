@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<html>
+<body>
+    <h1>수정 페이지</h1>
+    <form method="POST" action="{% url 'edit' blog.id %}">
+        {% csrf_token%}
+        Title:
+        <input type="text" name="title" value="{{blog.title}}">
+        <br>
+        Body:
+        <br>
+        <textarea cols="40" rows="10" name="body">{{blog.body}}</textarea>
+        <br/>
+        <input type="submit" value="수정" class = "btn btn-dark">
+    </form>
+</body>
+</html>
+{% else %}
+<br />
+<h1>You need to Log in or Sign up!</h1>
+<a href = "{% url 'login' %}"><button class = "btn btn-primary">Log in</button></a>
+<a href = "{% url 'signup' %}"><button class = "btn btn-warning">Sign up</button></a>
+{% endif %}
+{% endblock %}
